@@ -1,0 +1,13 @@
+[package]
+name = "read_ranges"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+memmap2 = "0.5.8"
+
+[target.'cfg(target_os = "linux")'.dependencies]
+nc = "0.8"
+
+[target.'cfg(target_os = "freebsd")'.dependencies]
+libc = "0.2.139"
