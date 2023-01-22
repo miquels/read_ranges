@@ -19,3 +19,6 @@ pub mod mmap {
 
 mod read_ranges;
 pub use read_ranges::*;
+
+mod fadvise;
+pub use fadvise::*;

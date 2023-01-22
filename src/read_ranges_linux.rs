@@ -26,7 +26,7 @@ thread_local!(static AIOCTX: RefCell<Option<io::Result<AioContext>>> = RefCell::
 
 pub fn read_ranges(file: &File, buf: ReadRangeBuf) -> io::Result<ReadRangeBuf> {
     AIOCTX.with(|ctx| {
-        match ctx.borrow_mut().get_or_insert_with(|| AioContext::new(64)) {
+        match ctx.borrow_mut().get_or_insert_with(|| AioContext::new(256)) {
             Ok(ctx) => ctx.read_ranges(file, buf),
             Err(e) => Err(io::Error::from_raw_os_error(e.raw_os_error().unwrap())),
         }
